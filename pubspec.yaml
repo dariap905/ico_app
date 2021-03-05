@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_speed_dial:
+  unicorndial: ^1.1.5
 
   cupertino_icons: ^1.0.0
 

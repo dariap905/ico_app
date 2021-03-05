@@ -7,7 +7,7 @@ class Medicacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyApp.buildAppBar(),
+      appBar: MyHomePage.buildAppBar(context),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
