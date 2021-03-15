@@ -3,11 +3,18 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:ico_app/paginas/agenda.dart';
 import 'package:ico_app/paginas/cita-previa.dart';
 import 'package:ico_app/paginas/consultas.dart';
+import 'package:ico_app/paginas/cuenta.dart';
 import 'package:ico_app/paginas/diagnosticos.dart';
 import 'package:ico_app/paginas/informes.dart';
 import 'package:ico_app/paginas/medicacion.dart';
+// Import the firebase_core plugin
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 double appBarHeight = 60.0;
 
@@ -16,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: new MyHomePage(),
+      home: new Cuenta(),
       initialRoute: '/',
       routes: getRutas(),
       onGenerateRoute: (RouteSettings settings) {
