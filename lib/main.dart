@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:ico_app/paginas/agenda.dart';
 import 'package:ico_app/paginas/cita-previa.dart';
 import 'package:ico_app/paginas/consultas.dart';
-import 'package:ico_app/paginas/cuenta.dart';
 import 'package:ico_app/paginas/diagnosticos.dart';
+import 'package:ico_app/paginas/formulario-bienvenida-VIEJO.dart';
 import 'package:ico_app/paginas/informes.dart';
 import 'package:ico_app/paginas/medicacion.dart';
-// Import the firebase_core plugin
-import 'package:firebase_core/firebase_core.dart';
+import 'package:ico_app/paginas/perfil.dart';
+import 'auth-screens/Welcome/welcome_screen.dart';
+import 'constants.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 double appBarHeight = 60.0;
+bool formularioMostrado = true;
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false,
-      home: new Cuenta(),
+      home: checkWhatToShow(),
       initialRoute: '/',
       routes: getRutas(),
       onGenerateRoute: (RouteSettings settings) {
@@ -32,6 +35,14 @@ class MyApp extends StatelessWidget {
         );
       },
     );
+  }
+
+  checkWhatToShow() {
+    if (formularioMostrado) {
+      return WelcomeScreen();
+    } else {
+      return FormularioBienvenida();
+    }
   }
 }
 
@@ -55,73 +66,25 @@ class MyHomePage extends StatelessWidget {
                 buildGridView(),
               ],
             )),
-        buildfab(),
+        buildFloatingActionButton(context),
       ],
     );
   }
 
-  static buildfab(){
+  static buildFloatingActionButton(BuildContext context) {
+
     return Positioned(
       child: new FloatingActionButton(
         heroTag: null,
         mini: true,
-        child: SpeedDial(
-          marginEnd: 5,
-          marginBottom: 645,
-          icon: Icons.person,
-          activeIcon: Icons.person,
-          // iconTheme: IconThemeData(color: Colors.grey[50], size: 30),
-          // label: Text("Open Speed Dial"),
-          // activeLabel: Text("Close Speed Dial"),
-          //labelTransitionBuilder: (widget, animation) => ScaleTransition(scale: animation,child: widget),
-          buttonSize: 44.0,
-          visible: true,
-          closeManually: false,
-          renderOverlay: false,
-          curve: Curves.linear,
-          //overlayColor: Colors.green,
-          overlayOpacity: 0,
-          //tooltip: 'Speed Dial',
-          heroTag: 'speed-dial-hero-tag',
-          backgroundColor: Colors.orange,
-          foregroundColor: Colors.black,
-          elevation: 0,
-          shape: CircleBorder(),
-          orientation: SpeedDialOrientation.Down,
-          //childMarginBottom: 20,
-          //childMarginTop: 20,
-          children: [
-            SpeedDialChild(
-              shape: CircleBorder(),
-              child: Icon(
-                  Icons.favorite,
-                  color: Colors.pink,
-                  size: 24.0
-              ),
-              backgroundColor: Colors.green,
-              label: 'Perfil',
-              labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-              onTap: () => print('Perfil'),
-            ),
-            SpeedDialChild(
-              shape: CircleBorder(),
-              child: Icon(Icons.accessibility),
-              backgroundColor: Colors.green,
-              label: 'Configuracion',
-              labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-              onTap: () => print('Configuracion'),
-            ),
-            SpeedDialChild(
-              shape: CircleBorder(),
-              child: Icon(Icons.accessibility),
-              backgroundColor: Colors.green,
-              label: 'Extra',
-              labelStyle: TextStyle(fontSize: 18.0, color: Colors.black),
-              onTap: () => print('FIRST CHILD'),
-            ),
-          ],
-        ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.orange,
+        child: new Icon(Icons.person),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Perfil()),
+          );
+        },
       ),
       right: 10.0,
       top: appBarHeight - 32.0,
@@ -202,5 +165,6 @@ Map<String, WidgetBuilder> getRutas() {
     'diagnosticos': (BuildContext context) => Diagnosticos(),
     'informes': (BuildContext context) => Informes(),
     'medicacion': (BuildContext context) => Medicacion(),
+    'perfil': (BuildContext context) => Perfil()
   };
 }
