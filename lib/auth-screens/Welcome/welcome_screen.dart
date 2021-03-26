@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ico_app/auth-screens/Login/login_screen.dart';
 import 'package:ico_app/auth-screens/Signup/signup_screen.dart';
 import 'package:ico_app/components/rounded_button.dart';
-
 import '../../constants.dart';
 import 'background.dart';
 
@@ -27,7 +26,7 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "WELCOME TO EDU",
+              "BIENVENIDOS",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: size.height * 0.05),
@@ -50,7 +49,7 @@ class Body extends StatelessWidget {
               },
             ),
             RoundedButton(
-              text: "SIGN UP",
+              text: "CREAR CUENTA",
               color: kPrimaryLightColor,
               textColor: Colors.black,
               press: () {

@@ -11,13 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_speed_dial: ^2.1.1
+  flutter_speed_dial: ^3.0.5
   table_calendar: ^2.3.3
-  shared_preferences: ^0.5.4+5
+  shared_preferences: ^2.0.5
   firebase_core: ^1.0.1
   firebase_database: ^6.1.0
-  flutter_cupertino_date_picker: ^0.8.0
-  intl: ^0.15.8
+  flutter_cupertino_date_picker: ^1.0.26+2
+  intl: ^0.17.0
   cupertino_icons: ^1.0.0
   flutter_svg: ^0.19.1
 

@@ -6,27 +6,6 @@ import '../main.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/*
-class Agenda extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyHomePage.buildAppBar(context),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: TableCalendar(
-
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/
-
 class Agenda extends StatefulWidget {
   @override
   _AgendaState createState() => _AgendaState();
@@ -169,13 +148,13 @@ class _AgendaState extends State<Agenda> {
         context: context,
         builder: (context) => AlertDialog(
           backgroundColor: Colors.white70,
-          title: Text("Add Events"),
+          title: Text("Añadir evento"),
           content: TextField(
             controller: _eventController,
           ),
           actions: <Widget>[
-            FlatButton(
-              child: Text("Save",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
+            TextButton(
+              child: Text("Guardar",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
               onPressed: () {
                 if (_eventController.text.isEmpty) return;
                 setState(() {
@@ -191,7 +170,6 @@ class _AgendaState extends State<Agenda> {
                   _eventController.clear();
                   Navigator.pop(context);
                 });
-
               },
             )
           ],

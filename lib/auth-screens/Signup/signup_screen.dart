@@ -26,7 +26,7 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "SIGNUP",
+              "CREAR CUENTA",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: size.height * 0.03),
@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
               height: size.height * 0.35,
             ),
             RoundedInputField(
-              hintText: "Your Email",
+              hintText: "Correo",
               onChanged: (value) {
 
               },
@@ -44,7 +44,7 @@ class Body extends StatelessWidget {
               onChanged: (value) {},
             ),
             RoundedButton(
-              text: "SIGNUP",
+              text: "CREAR CUENTA",
               press: () {},
             ),
             SizedBox(height: size.height * 0.03),

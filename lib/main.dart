@@ -4,7 +4,6 @@ import 'package:ico_app/paginas/cita-previa.dart';
 import 'package:ico_app/paginas/consultas.dart';
 import 'package:ico_app/paginas/diagnosticos.dart';
 import 'package:ico_app/paginas/form.dart';
-import 'package:ico_app/paginas/formulario-bienvenida-VIEJO.dart';
 import 'package:ico_app/paginas/informes.dart';
 import 'package:ico_app/paginas/medicacion.dart';
 import 'package:ico_app/paginas/perfil.dart';
@@ -78,7 +77,7 @@ class MyHomePage extends StatelessWidget {
       child: new FloatingActionButton(
         heroTag: null,
         mini: true,
-        backgroundColor: Colors.orange,
+        backgroundColor: kPrimaryLightColor,
         child: new Icon(Icons.person),
         onPressed: () {
           Navigator.push(
@@ -139,7 +138,7 @@ class SelectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Colors.orange,
+        color: kPrimaryColor,
         child: InkWell(
             onTap: () => Navigator.pushNamed(context, choice.ruta),
             child: Center(
