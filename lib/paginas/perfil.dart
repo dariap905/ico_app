@@ -153,7 +153,7 @@ class Perfil extends StatelessWidget {
                         width: 200,
                         child: Align(
                           child: Text(
-                            'Guardar',
+                            'Editar',
                             style:
                                 TextStyle(color: Colors.white70, fontSize: 20),
                           ),

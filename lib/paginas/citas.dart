@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 
-class Diagnosticos extends StatelessWidget {
+class Citas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
