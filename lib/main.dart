@@ -16,20 +16,7 @@ import 'dart:io' show Platform;
 import 'package:feature_discovery/feature_discovery.dart';
 import 'constants.dart';
 
-
-const String feature1 = 'feature1',
-    feature2 = 'feature2',
-    feature3 = 'feature3',
-    feature4 = 'feature4',
-    feature5 = 'feature5',
-    feature6 = 'feature6',
-    feature7 = 'feature7';
-
 void main() {
-  // You can increase the timeDilation value if you want to see
-  // the animations more slowly.
-  timeDilation = 1.0;
-
   runApp(MyApp());
 }
 
