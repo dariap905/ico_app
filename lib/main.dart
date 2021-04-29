@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:ico_app/paginas/agenda.dart';
 import 'package:ico_app/paginas/citas.dart';
 import 'package:ico_app/paginas/consultas.dart';
@@ -10,11 +9,11 @@ import 'package:ico_app/paginas/medicacion.dart';
 import 'package:ico_app/paginas/perfil.dart';
 import 'package:ico_app/paginas/tutorial.dart';
 import 'auth-screens/Welcome/welcome_screen.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:store_redirect/store_redirect.dart';
-import 'package:open_appstore/open_appstore.dart';
-import 'dart:io' show Platform;
-import 'package:feature_discovery/feature_discovery.dart';
 import 'constants.dart';
+
+// flutter run --no-sound-null-safety
 
 void main() {
   runApp(MyApp());
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
 }
 
 class CommonThings {
-  static Size size;
+  static Size ? size;
 }
 
 class MyHomePage extends StatelessWidget {
@@ -95,20 +94,8 @@ class MyHomePage extends StatelessWidget {
                       width: double.infinity, // <-- match_parent
                       child: ElevatedButton(
                         onPressed: () {
-/*                        *//*Other options:
-                          * Platform.isAndroid
-                            Platform.isFuchsia
-                            Platform.isIOS
-                            Platform.isLinux
-                            Platform.isMacOS
-                            Platform.isWindows*//*
-                          if (Platform.isAndroid) {
-                            StoreRedirect.redirect(
-                                androidAppId: "cat.gencat.mobi.lamevasalut");
-                          } else if (Platform.isIOS) {
-                            StoreRedirect.redirect(iOSAppId: "1358288989");
-                          }*/
-                          OpenAppstore.launch(androidAppId: "cat.gencat.mobi.lamevasalut", iOSAppId: "1358288989");
+                          //OpenAppstore.launch(androidAppId: "cat.gencat.mobi.lamevasalut", iOSAppId: "1358288989");
+                          StoreRedirect.redirect(androidAppId: "cat.gencat.mobi.lamevasalut", iOSAppId: "1358288989");
                         },
                         child: Text("La Meva /Salut"),
                       )),
@@ -162,7 +149,7 @@ class MyHomePage extends StatelessWidget {
 }
 
 class Choice {
-  const Choice({this.title, this.icon, this.ruta});
+  const Choice({required this.title, required this.icon, required this.ruta});
 
   final String title;
   final IconData icon;
@@ -174,14 +161,14 @@ const List<Choice> choices = const <Choice>[
       title: 'Equipo', icon: Icons.bookmarks_outlined, ruta: 'equipo'),
   const Choice(
       title: 'Medicación', icon: Icons.list_alt_outlined, ruta: 'medicacion'),
-  const Choice(title: 'Chat', icon: Icons.map_outlined, ruta: 'consultas'),
+  const Choice(title: 'Consultas', icon: Icons.map_outlined, ruta: 'consultas'),
   const Choice(title: 'Citas', icon: Icons.phone, ruta: 'citas'),
   const Choice(title: 'Agenda', icon: Icons.menu_book_outlined, ruta: 'agenda'),
   const Choice(title: 'F.A.Q', icon: Icons.book, ruta: 'faq')
 ];
 
 class SelectCard extends StatelessWidget {
-  const SelectCard({Key key, this.choice}) : super(key: key);
+  const SelectCard({Key ? key, required this.choice}) : super(key: key);
   final Choice choice;
 
   @override

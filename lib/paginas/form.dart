@@ -11,10 +11,10 @@ class FormScreen extends StatefulWidget {
 }
 
 class FormScreenState extends State<FormScreen> {
-  String _nombre;
-  String _email;
-  String _edad;
-  String _telefono;
+   String _nombre = "";
+   String _email = "";
+   String _edad ="";
+   String _telefono = "";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -22,15 +22,15 @@ class FormScreenState extends State<FormScreen> {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Nombre'),
       maxLength: 10,
-      validator: (String value) {
-        if (value.isEmpty) {
+      validator: (String ? value) {
+        if (value!.isEmpty) {
           return 'Se requiere un nombre';
         }
 
         return null;
       },
-      onSaved: (String value) {
-        _nombre = value;
+      onSaved: (String ? value) {
+        _nombre = value!;
       },
     );
   }
@@ -38,8 +38,8 @@ class FormScreenState extends State<FormScreen> {
   Widget _buildEmail() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Email'),
-      validator: (String value) {
-        if (value.isEmpty) {
+      validator: (String ? value) {
+        if (value!.isEmpty) {
           return 'Se requiere un correo electrónico';
         }
 
@@ -51,8 +51,8 @@ class FormScreenState extends State<FormScreen> {
 
         return null;
       },
-      onSaved: (String value) {
-        _email = value;
+      onSaved: (String ? value) {
+        _email = value!;
       },
     );
   }
@@ -61,15 +61,17 @@ class FormScreenState extends State<FormScreen> {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Edad'),
       keyboardType: TextInputType.number,
-      validator: (String value) {
-        if (value.isEmpty || value.length > 2) {
-          return 'Introduce su edad';
+      validator: (String ? value) {
+        if (value != null) {
+          if (value.isEmpty || value.length > 2) {
+            return 'Introduce su edad';
+          }
         }
 
         return null;
       },
-      onSaved: (String value) {
-        _edad = value;
+      onSaved: (String ? value) {
+        _edad = value!;
       },
     );
   }
@@ -78,15 +80,15 @@ class FormScreenState extends State<FormScreen> {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Teléfono'),
       keyboardType: TextInputType.phone,
-      validator: (String value) {
-        if (value.isEmpty) {
+      validator: (String ? value) {
+        if (value!.isEmpty) {
           return 'Se requiere un numero de teléfono';
         }
 
         return null;
       },
-      onSaved: (String value) {
-        _telefono = value;
+      onSaved: (String ? value) {
+        _telefono = value!;
       },
     );
   }
@@ -114,11 +116,11 @@ class FormScreenState extends State<FormScreen> {
                     style: TextStyle(color: kPrimaryLightColor, fontSize: 16),
                   ),
                   onPressed: () {
-                    if (!_formKey.currentState.validate()) {
+                    if (!_formKey.currentState!.validate()) {
                       return;
                     }
 
-                    _formKey.currentState.save();
+                    _formKey.currentState!.save();
                     _showMyDialog();
 
                     //Send to API

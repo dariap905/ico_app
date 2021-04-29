@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:table_calendar/table_calendar.dart';
-import '../main.dart';
-import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:table_calendar/table_calendar.dart';
+// import 'package:flutter/rendering.dart';
+// import 'package:table_calendar/table_calendar.dart';
+import '../main.dart';
+// import 'dart:convert';
+// import 'package:shared_preferences/shared_preferences.dart';
+
 
 class Agenda extends StatefulWidget {
   @override
@@ -12,11 +18,11 @@ class Agenda extends StatefulWidget {
 }
 
 class _AgendaState extends State<Agenda> {
-  CalendarController _controller;
-  Map<DateTime, List<dynamic>> _events;
-  List<dynamic> _selectedEvents;
-  TextEditingController _eventController;
-  SharedPreferences prefs;
+  late CalendarController _controller;
+  late Map<DateTime, List<dynamic>> _events;
+  late List<dynamic> _selectedEvents;
+  late TextEditingController _eventController;
+  late SharedPreferences prefs;
 
   @override
   void initState() {
@@ -159,7 +165,7 @@ class _AgendaState extends State<Agenda> {
                 if (_eventController.text.isEmpty) return;
                 setState(() {
                   if (_events[_controller.selectedDay] != null) {
-                    _events[_controller.selectedDay]
+                    _events[_controller.selectedDay]!
                         .add(_eventController.text);
                   } else {
                     _events[_controller.selectedDay] = [
@@ -177,3 +183,21 @@ class _AgendaState extends State<Agenda> {
   }
 }
 
+
+
+/*class Agenda extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MyHomePage.buildAppBar(context),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}*/

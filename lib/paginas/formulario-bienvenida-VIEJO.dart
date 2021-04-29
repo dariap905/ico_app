@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class FormularioBienvenida extends StatefulWidget {
@@ -216,3 +217,4 @@ class RadioModel {
 
   RadioModel(this.isSelected, this.time, this.icon);
 }
+*/

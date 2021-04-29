@@ -1,7 +1,6 @@
 import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:simple_tooltip/simple_tooltip.dart';
 
 import '../constants.dart';
 import '../main.dart';
@@ -21,7 +20,7 @@ const icon3 = Icon(Icons.search);
 const icon4 = Icon(Icons.add);
 
 class CommonThings {
-  static Size size;
+  static Size ? size;
 }
 
 class Tutorial extends StatelessWidget {
@@ -129,7 +128,7 @@ class Tutorial extends StatelessWidget {
 }
 
 class Choice {
-  const Choice({this.title, this.icon, this.texto});
+  const Choice({required this.title, required this.icon, required this.texto});
 
   final String title;
   final IconData icon;
@@ -148,7 +147,7 @@ const List<Choice> choices = const <Choice>[
 ];
 
 class SelectCard extends StatelessWidget {
-  const SelectCard({Key key, this.choice}) : super(key: key);
+  const SelectCard({Key ? key, required this.choice}) : super(key: key);
   final Choice choice;
 
   @override
