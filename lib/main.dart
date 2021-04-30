@@ -11,14 +11,12 @@ import 'package:ico_app/paginas/tutorial.dart';
 import 'auth-screens/Welcome/welcome_screen.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:store_redirect/store_redirect.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'constants.dart';
 
 // flutter run --no-sound-null-safety
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -97,7 +95,6 @@ class MyHomePage extends StatelessWidget {
                       width: double.infinity, // <-- match_parent
                       child: ElevatedButton(
                         onPressed: () {
-                          //OpenAppstore.launch(androidAppId: "cat.gencat.mobi.lamevasalut", iOSAppId: "1358288989");
                           StoreRedirect.redirect(androidAppId: "cat.gencat.mobi.lamevasalut", iOSAppId: "1358288989");
                         },
                         child: Text("La Meva /Salut"),
