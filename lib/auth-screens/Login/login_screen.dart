@@ -5,8 +5,12 @@ import 'package:ico_app/components/already_have_an_account_acheck.dart';
 import 'package:ico_app/components/rounded_button.dart';
 import 'package:ico_app/components/rounded_input_field.dart';
 import 'package:ico_app/components/rounded_password_field.dart';
+import '../../components/rounded_button.dart';
+import '../../components/rounded_input_field.dart';
+import '../../components/rounded_input_field.dart';
 import '../../main.dart';
 import 'background.dart';
+import 'package:ico_app/services/auth.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -18,6 +22,10 @@ class LoginScreen extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
+
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +47,31 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
+              emailController: emailController,
               hintText: "Correo",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
+              passwordController: passwordController,
               onChanged: (value) {},
             ),
             RoundedButton(
               text: "LOGIN",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
-                );
+              press: () async {
+                dynamic result = await _auth.handleSignIn(emailController.text, passwordController.text);
+                if(result != null){
+                  if(result.uid != "e4UBwHkyyCZEadiw6T1kBKShPiu2") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                  );
+                } else {
+                    print('aun no hay pagina de admin');
+                  }
+                } else {
+                  print('error signing in');
+                }
+
               },
             ),
             SizedBox(height: size.height * 0.03),
