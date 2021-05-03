@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../components/rounded_input_field.dart';
 import '../main.dart';
 
 class Perfil extends StatelessWidget {
+
+  TextEditingController NiA = new TextEditingController();
+  TextEditingController cip = new TextEditingController();
+  TextEditingController dni = new TextEditingController();
+  TextEditingController nac = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +80,10 @@ class Perfil extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Nombre y Apellidos',
-                            style: TextStyle(color: Colors.white70),
+                          child: RoundedInputField(
+                            hintText: 'Nombre y Apellidos',
+                            emailController: NiA,
+                            onChanged: (value) {},
                           ),
                         ),
                       ),
@@ -93,9 +101,10 @@ class Perfil extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'CIP',
-                            style: TextStyle(color: Colors.white70),
+                          child: RoundedInputField(
+                            hintText: 'CIP',
+                            emailController: cip,
+                            onChanged: (value) {},
                           ),
                         ),
                       ),
@@ -113,9 +122,10 @@ class Perfil extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'DNI/NIE',
-                            style: TextStyle(color: Colors.white70),
+                          child: RoundedInputField(
+                            hintText: 'DNI/NIE',
+                            emailController: dni,
+                            onChanged: (value) {},
                           ),
                         ),
                       ),
@@ -133,9 +143,10 @@ class Perfil extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Fecha de nacimiento',
-                            style: TextStyle(color: Colors.white70),
+                          child: RoundedInputField(
+                            hintText: 'Fecha de nacimiento',
+                            emailController: nac,
+                            onChanged: (value) {},
                           ),
                         ),
                       ),
@@ -145,7 +156,7 @@ class Perfil extends StatelessWidget {
                               Border.all(width: 1.0, color: Colors.white70)),
                     ),
                   ),
-                  Expanded(
+                  /*Expanded(
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: Container(
@@ -165,7 +176,7 @@ class Perfil extends StatelessWidget {
                             )),
                       ),
                     ),
-                  )
+                  )*/
                 ],
               ),
             ))
