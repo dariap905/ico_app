@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ico_app/auth-screens/Login/login_screen.dart';
 import 'package:ico_app/auth-screens/Welcome/welcome_screen.dart';
+import 'package:ico_app/services/database.dart';
 
 import '../constants.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class FormScreen extends StatefulWidget {
   @override
@@ -12,11 +17,14 @@ class FormScreen extends StatefulWidget {
 
 class FormScreenState extends State<FormScreen> {
    String _nombre = "";
-   String _email = "";
-   String _edad ="";
-   String _telefono = "";
+   String _apellidos = "";
+   String _cip = "";
+   String _dni = "";
+   String _fechaNacim = "";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final User user = _auth.currentUser!;
 
   Widget _buildName() {
     return TextFormField(
@@ -35,63 +43,72 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  Widget _buildEmail() {
+   Widget _buildLastName() {
+     return TextFormField(
+       decoration: InputDecoration(labelText: 'Apellidos'),
+       maxLength: 10,
+       validator: (String ? value) {
+         if (value!.isEmpty) {
+           return 'Se requiere minimo un apellido';
+         }
+
+         return null;
+       },
+       onSaved: (String ? value) {
+         _apellidos = value!;
+       },
+     );
+   }
+
+   Widget _buildCip() {
+     return TextFormField(
+       decoration: InputDecoration(labelText: 'CIP'),
+       maxLength: 10,
+       validator: (String ? value) {
+         if (value!.isEmpty) {
+           return 'Se requiere un CIP';
+         }
+
+         return null;
+       },
+       onSaved: (String ? value) {
+         _cip = value!;
+       },
+     );
+   }
+
+  Widget _buildDni() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Email'),
+      decoration: InputDecoration(labelText: 'DNI'),
       validator: (String ? value) {
         if (value!.isEmpty) {
-          return 'Se requiere un correo electrónico';
-        }
-
-        if (!RegExp(
-            r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-            .hasMatch(value)) {
-          return 'Por favor, introduce un correo válido';
+          return 'Se requiere un dni';
         }
 
         return null;
       },
       onSaved: (String ? value) {
-        _email = value!;
+        _dni = value!;
       },
     );
   }
 
-  Widget _buildPassword() {
-    return TextFormField(
-      decoration: InputDecoration(labelText: 'Edad'),
-      keyboardType: TextInputType.number,
-      validator: (String ? value) {
-        if (value != null) {
-          if (value.isEmpty || value.length > 2) {
-            return 'Introduce su edad';
-          }
-        }
+   Widget _buildFechaNacim() {
+     return TextFormField(
+       decoration: InputDecoration(labelText: 'Fecha de nacimiento'),
+       keyboardType: TextInputType.datetime,
+       validator: (String ? value) {
+         if (value!.isEmpty) {
+           return 'Se requiere una fecha';
+         }
 
-        return null;
-      },
-      onSaved: (String ? value) {
-        _edad = value!;
-      },
-    );
-  }
-
-  Widget _buildPhoneNumber() {
-    return TextFormField(
-      decoration: InputDecoration(labelText: 'Teléfono'),
-      keyboardType: TextInputType.phone,
-      validator: (String ? value) {
-        if (value!.isEmpty) {
-          return 'Se requiere un numero de teléfono';
-        }
-
-        return null;
-      },
-      onSaved: (String ? value) {
-        _telefono = value!;
-      },
-    );
-  }
+         return null;
+       },
+       onSaved: (String ? value) {
+         _fechaNacim = value!;
+       },
+     );
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +123,10 @@ class FormScreenState extends State<FormScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _buildName(),
-                _buildEmail(),
-                _buildPassword(),
-                _buildPhoneNumber(),
+                _buildLastName(),
+                _buildCip(),
+                _buildDni(),
+                _buildFechaNacim(),
                 SizedBox(height: 100),
                 ElevatedButton(
                   child: Text(
@@ -161,17 +179,26 @@ class FormScreenState extends State<FormScreen> {
             child: ListBody(
               children: <Widget>[
                 Text("Nombre: " + _nombre),
-                Text("Email: " + _email),
-                Text("Edad: " + _edad),
-                Text("Teléfono: " + _telefono),
+                Text("Apellidos: " + _apellidos),
+                Text("CIP: " + _cip),
+                Text("DNI: " + _dni),
+                Text("Fecha de nacimiento: " + _fechaNacim),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
               child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async{
+                await DatabaseService(uid: user.uid).updateUserData(_nombre, _apellidos, _cip, _dni, _fechaNacim);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen();
+                    },
+                  ),
+                );
               },
             ),
           ],

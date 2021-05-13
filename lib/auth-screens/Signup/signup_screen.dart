@@ -5,7 +5,9 @@ import 'package:ico_app/components/already_have_an_account_acheck.dart';
 import 'package:ico_app/components/rounded_button.dart';
 import 'package:ico_app/components/rounded_input_field.dart';
 import 'package:ico_app/components/rounded_password_field.dart';
+import 'package:ico_app/paginas/form.dart';
 import 'package:ico_app/services/auth.dart';
+import 'package:ico_app/services/database.dart';
 import 'background.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -57,11 +59,12 @@ class Body extends StatelessWidget {
               press: () async {
                 dynamic result = await _auth.handleSignUp(emailController.text, passwordController.text);
                 if(result != null){
+                  await DatabaseService(uid: result.uid).updateUserData('', '', '', '', '');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return LoginScreen();
+                        return FormScreen();
                       },
                     ),
                   );

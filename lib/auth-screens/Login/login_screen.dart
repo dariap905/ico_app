@@ -71,7 +71,6 @@ class Body extends StatelessWidget {
                 } else {
                   print('error signing in');
                 }
-
               },
             ),
             SizedBox(height: size.height * 0.03),

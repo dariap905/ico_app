@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ico_app/auth-screens/Login/login_screen.dart';
 import 'package:ico_app/paginas/agenda.dart';
 import 'package:ico_app/paginas/citas.dart';
 import 'package:ico_app/paginas/consultas.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: checkWhatToShow(),
+      home: WelcomeScreen(),
       initialRoute: '/',
       routes: getRutas(),
       onGenerateRoute: (RouteSettings settings) {
@@ -44,14 +45,6 @@ class MyApp extends StatelessWidget {
         );
       },
     );
-  }
-
-  checkWhatToShow() {
-    if (formularioMostrado) {
-      return WelcomeScreen();
-    } else {
-      return FormScreen();
-    }
   }
 }
 
