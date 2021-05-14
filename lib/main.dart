@@ -1,6 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ico_app/auth-screens/Login/login_screen.dart';
+import 'package:ico_app/paginas/admin/buscar.dart';
+import 'package:ico_app/paginas/admin/chat.dart';
+import 'package:ico_app/paginas/admin/home-admin.dart';
+import 'package:ico_app/paginas/admin/wip.dart';
 import 'package:ico_app/paginas/agenda.dart';
 import 'package:ico_app/paginas/citas.dart';
 import 'package:ico_app/paginas/consultas.dart';
@@ -61,15 +65,7 @@ class MyHomePage extends StatelessWidget {
         Scaffold(
             appBar: buildAppBar(context),
             body: Container(
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.white,
-                      Colors.yellow
-                    ],
-                  )),
+              decoration: buildDecor(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
@@ -93,6 +89,17 @@ class MyHomePage extends StatelessWidget {
                           StoreRedirect.redirect(androidAppId: "cat.gencat.mobi.lamevasalut", iOSAppId: "1358288989");
                         },
                         child: Text("La Meva /Salut"),
+                      )),
+                  SizedBox(
+                      width: double.infinity, // <-- match_parent
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeAdmin()),
+                          );
+                        },
+                        child: Text("Admin test"),
                       )),
                   buildGridView(),
                 ],
@@ -128,9 +135,9 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  GridView buildGridView() {
+  static GridView buildGridView() {
     return GridView.count(
-        // without shrinkWrap doesn't work because unbounded height restrictions
+        // doesn't work without shrinkWrap because of unbounded height restrictions
         shrinkWrap: true,
         crossAxisCount: 3,
         crossAxisSpacing: 4.0,
@@ -140,6 +147,18 @@ class MyHomePage extends StatelessWidget {
             child: SelectCard(choice: choices[index]),
           );
         }));
+  }
+
+  static buildDecor() {
+    return new BoxDecoration(
+        gradient: new LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.white,
+            Colors.yellow
+          ],
+        ));
   }
 }
 
@@ -197,6 +216,10 @@ Map<String, WidgetBuilder> getRutas() {
     'equipo': (BuildContext context) => Equipo(),
     'medicacion': (BuildContext context) => Medicacion(),
     'perfil': (BuildContext context) => Perfil(),
-    'tutorial': (BuildContext context) => Tutorial()
+    'tutorial': (BuildContext context) => Tutorial(),
+    'home': (BuildContext context) => MyHomePage(),
+    'chat': (BuildContext context) => Chat(),
+    'buscar': (BuildContext context) => Buscar(),
+    'wip': (BuildContext context) => WIP()
   };
 }
