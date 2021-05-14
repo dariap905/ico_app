@@ -1,12 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ico_app/paginas/admin/telefono.dart';
 import '../../main.dart';
 
 class HomeAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyHomePage.buildAppBar(context),
+      appBar: AppBar(
+        actions: [
+          Container(
+            width: 60,
+            child: IconButton(
+              icon: const Icon(Icons.notifications, color: Colors.white, size: 30),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Telefono()),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
       body: Container(
         decoration: MyHomePage.buildDecor(),
         child: Column(
@@ -43,5 +59,5 @@ const List<Choice> choicesAdmin = const <Choice>[
   const Choice(title: 'Home', icon: Icons.home, ruta: 'home'),
   const Choice(title: 'Chat', icon: Icons.contacts, ruta: 'chat'),
   const Choice(title: 'Buscar', icon: Icons.search, ruta: 'buscar'),
-  const Choice(title: 'WIP', icon: Icons.phone, ruta: 'wip'),
+  const Choice(title: 'Teléfono', icon: Icons.phone, ruta: 'telefono'),
 ];

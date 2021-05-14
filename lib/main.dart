@@ -4,7 +4,7 @@ import 'package:ico_app/auth-screens/Login/login_screen.dart';
 import 'package:ico_app/paginas/admin/buscar.dart';
 import 'package:ico_app/paginas/admin/chat.dart';
 import 'package:ico_app/paginas/admin/home-admin.dart';
-import 'package:ico_app/paginas/admin/wip.dart';
+import 'package:ico_app/paginas/admin/telefono.dart';
 import 'package:ico_app/paginas/agenda.dart';
 import 'package:ico_app/paginas/citas.dart';
 import 'package:ico_app/paginas/consultas.dart';
@@ -220,6 +220,6 @@ Map<String, WidgetBuilder> getRutas() {
     'home': (BuildContext context) => MyHomePage(),
     'chat': (BuildContext context) => Chat(),
     'buscar': (BuildContext context) => Buscar(),
-    'wip': (BuildContext context) => WIP()
+    'wip': (BuildContext context) => Telefono()
   };
 }
