@@ -5,6 +5,7 @@ import 'package:ico_app/components/already_have_an_account_acheck.dart';
 import 'package:ico_app/components/rounded_button.dart';
 import 'package:ico_app/components/rounded_input_field.dart';
 import 'package:ico_app/components/rounded_password_field.dart';
+import 'package:ico_app/paginas/admin/home-admin.dart';
 import '../../components/rounded_button.dart';
 import '../../components/rounded_input_field.dart';
 import '../../components/rounded_input_field.dart';
@@ -66,7 +67,10 @@ class Body extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => MyHomePage()),
                   );
                 } else {
-                    print('aun no hay pagina de admin');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeAdmin()),
+                    );
                   }
                 } else {
                   print('error signing in');
