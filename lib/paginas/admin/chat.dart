@@ -10,7 +10,13 @@ class Chat extends StatelessWidget {
     return Scaffold(
       appBar: MyHomePage.buildAppBar(context),
       body: Center(
-      ),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      )
     );
   }
 }

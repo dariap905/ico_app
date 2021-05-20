@@ -90,17 +90,6 @@ class MyHomePage extends StatelessWidget {
                         },
                         child: Text("La Meva /Salut"),
                       )),
-                  SizedBox(
-                      width: double.infinity, // <-- match_parent
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomeAdmin()),
-                          );
-                        },
-                        child: Text("Admin test"),
-                      )),
                   buildGridView(),
                 ],
               ),
@@ -220,6 +209,6 @@ Map<String, WidgetBuilder> getRutas() {
     'home': (BuildContext context) => MyHomePage(),
     'chat': (BuildContext context) => Chat(),
     'buscar': (BuildContext context) => Buscar(),
-    'wip': (BuildContext context) => Telefono()
+    'telefono': (BuildContext context) => Telefono()
   };
 }
